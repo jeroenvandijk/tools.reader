@@ -47,7 +47,7 @@
     (\" \; \@ \^ \` \~ \( \) \[ \] \{ \} \\) true
     false))
 
-(defn- ^String read-token
+(defn ^String read-token
   "Read in a single logical token from the reader"
   [rdr kind initch]
   (if-not initch
@@ -182,8 +182,8 @@
   (when (indexing-reader? rdr)
     [(get-line-number rdr) (get-column-number rdr)]))
 
-(defonce ^:private READ_EOF (Object.))
-(defonce ^:private READ_FINISHED (Object.))
+(defonce READ_EOF (Object.))
+(defonce READ_FINISHED (Object.))
 
 (def ^:dynamic *read-delim* false)
 (defn- ^PersistentVector read-delimited
@@ -773,7 +773,7 @@
           (err/throw-ns-map-no-map rdr token)))
       (err/throw-bad-ns rdr token))))
 
-(defn- macros [ch]
+(defn macros [ch]
   (case ch
     \" read-string*
     \: read-keyword
@@ -902,7 +902,7 @@
   {'inst #'data-readers/read-instant-date
    'uuid #'data-readers/default-uuid-reader})
 
-(defn ^:private read*
+(defn read*
   ([reader eof-error? sentinel opts pending-forms]
      (read* reader eof-error? sentinel nil opts pending-forms))
   ([reader eof-error? sentinel return-on opts pending-forms]
